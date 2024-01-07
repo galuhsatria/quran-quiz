@@ -13,9 +13,7 @@ export default function Navbar() {
     <header className="border-[#252831] border-b sticky top-0 bg-[#0D1424] z-10">
       <nav className="flex items-center justify-between max-w-4xl mx-auto p-4 bg-[#0D1424] backdrop-blur-sm">
         <div className="w-full">
-          <Link href={'/'} className="logo font-bold text-xl bg-gradient-to-b from-purple-300 to-purple-500 bg-clip-text text-transparent">
-            Al Quran Quiz
-          </Link>
+          <p className="logo font-bold text-xl bg-gradient-to-b from-purple-300 to-purple-500 bg-clip-text text-transparent">Al Quran Quiz</p>
         </div>
         <ul className="sm:flex gap-6 text-sm font-medium text-slate-400 w-full justify-center hidden">
           <li>
@@ -29,13 +27,13 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href={'/'} className={`${pathname === '/about' ? 'text-white' : ''} hover:text-white transition-all duration-200`}>
+            <Link href={'/about'} className={`${pathname === '/about' ? 'text-white' : ''} hover:text-white transition-all duration-200`}>
               About
             </Link>
           </li>
         </ul>
         <div className="w-full flex  items-center gap-4 justify-end">
-          <Link href={'/'}>
+          <Link href={'https://github.com/galuhsatria/quran-quiz'}>
             <Github />
           </Link>
           <DropdownMenu className="bg-slate-800 sm:hidden">
