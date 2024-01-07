@@ -45,7 +45,7 @@ export default function Page() {
   return (
     <div className="max-w-4xl mx-auto px-4 mt-14 min-h-screen">
       <div className="bg-gradient-to-r from-purple-500 to-purple-800 rounded-md pt-7 pb-10 mb-10">
-        <p className="font-lateef text-3xl text-center">بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</p>
+        <p className="font-lateef text-3xl text-center px-4">بِسْــــــــــــــــــمِ اللهِ الرَّحْمَنِ الرَّحِيْمِ</p>
       </div>
       <div className="relative">
         <div className="flex items-center gap-4 bg-[#252831] px-4 rounded-sm">
