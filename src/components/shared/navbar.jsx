@@ -54,7 +54,7 @@ export default function Navbar() {
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="hover:bg-slate-800">
-                <Link href={'/'} className={`${pathname === '/about' ? 'text-white' : ''} hover:text-white transition-all duration-200`}>
+                <Link href={'/about'} className={`${pathname === '/about' ? 'text-white' : ''} hover:text-white transition-all duration-200`}>
                   About
                 </Link>
               </DropdownMenuItem>
