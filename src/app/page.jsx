@@ -111,7 +111,7 @@ export default function Page() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 mt-10">
+    <div className="max-w-4xl mx-auto px-4 mt-10 min-h-screen">
       <section className="text-center mb-12 border-b border-gray-800 pb-5 max-w-2xl mx-auto">
         <h1 className="text-3xl font-bold bg-gradient-to-b from-purple-300 to-purple-500 bg-clip-text text-transparent">Al Quran Quiz</h1>
         <p className="text-sm text-gray-400 mt-3">Sebuah fitur untuk menghasilkan quiz tentang Al-Quran. Anda dapat menggunakanya untuk meningkatkan hafalan Al-Quran anda</p>
