@@ -22,6 +22,15 @@ export default function Page({ params }) {
     }
   };
 
+  const handleEnded = (index) => {
+    if (index + 1 < audioRefs.current.length) {
+      audioRefs.current[index + 1].play();
+      setPlayingIndex(index + 1);
+    } else {
+      setPlayingIndex(null);
+    }
+  };
+
   async function fetchSurahData() {
     try {
       const response = await fetch(`https://api.quran.gading.dev/surah/${params.slug}`);
@@ -39,8 +48,6 @@ export default function Page({ params }) {
     fetchSurahData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(dataSurah);
 
   return (
     <div className="max-w-4xl mx-auto px-4 mt-16 min-h-screen">
@@ -75,11 +82,19 @@ export default function Page({ params }) {
                   <p className="text-sm text-zinc-400 mt-2">{ayat.translation.id}</p>
                 </div>
                 <div className="hidden">
-                  <audio controls ref={(el) => (audioRefs.current[index] = el)} hidden onEnded={() => setPlayingIndex(null)}>
+                  <audio
+                    controls
+                    ref={(el) => (audioRefs.current[index] = el)}
+                    hidden
+                    onEnded={() => handleEnded(index)}
+                  >
                     <source src={ayat.audio && ayat.audio.secondary[0]} />
                   </audio>
                 </div>
-                <div onClick={() => handlePlayPause(index)} className="cursor-pointer p-3 rounded-full bg-gradient-to-r from-purple-500 to-purple-800 mt-4 flex items-start justify-center w-max hover:bg-purple-500">
+                <div
+                  onClick={() => handlePlayPause(index)}
+                  className="cursor-pointer p-3 rounded-full bg-gradient-to-r from-purple-500 to-purple-800 mt-4 flex items-start justify-center w-max hover:bg-purple-500"
+                >
                   {playingIndex === index ? <Pause /> : <Play />}
                 </div>
               </li>
