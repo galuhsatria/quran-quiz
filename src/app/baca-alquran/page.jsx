@@ -13,7 +13,7 @@ export default function Page() {
 
   async function fetchSurahData() {
     try {
-      const response = await fetch('https://equran.id/api/v2/surat');
+      const response = await fetch('https://api.quran.gading.dev/surah');
       if (!response.ok) {
         throw new Error('Network response was not ok.');
       }
@@ -69,24 +69,24 @@ export default function Page() {
                 .filter((surah) => {
                   if (search === '') {
                     return true;
-                  } else if (surah.namaLatin.toLowerCase().includes(search.toLowerCase())) {
+                  } else if (surah.name.transliteration.id.toLowerCase().includes(search.toLowerCase())) {
                     return true;
                   }
                   return false;
                 })
                 .map((surah, index) => (
                   <li key={index}>
-                    <Link href={`/baca-alquran/surat/${surah.nomor}`} className="flex flex-col border bg-slate-800 border-slate-800 p-4 rounded-md hover:border hover:border-purple-500 transition-all duration-300">
+                    <Link href={`/baca-alquran/surat/${surah.number}`} className="flex flex-col border bg-slate-800 border-slate-800 p-4 rounded-md hover:border hover:border-purple-500 transition-all duration-300">
                       <div className="flex gap-2">
-                        <p>{surah.nomor}.</p>
-                        <p>{surah.namaLatin}</p>
+                        <p>{surah.number}.</p>
+                        <p>{surah.name.transliteration.id}</p>
                       </div>
                       <div className="flex flex-col items-end">
-                        <h3 className="text-2xl font-lateef">{surah.nama}</h3>
+                        <h3 className="text-2xl font-lateef">{surah.name.short}</h3>
                         <div className="flex  mt-3 w-56 justify-end">
-                          <p>{surah.tempatTurun}</p>
+                          <p>{surah.revelation.id}</p>
                           <Dot />
-                          <p className="truncate">{surah.arti}</p>
+                          <p className="truncate">{surah.name.translation.id}</p>
                         </div>
                       </div>
                     </Link>

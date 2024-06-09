@@ -30,12 +30,12 @@ export default function Page() {
 
   async function fetchSurahData() {
     try {
-      const response = await fetch('https://equran.id/api/v2/surat');
+      const response = await fetch('https://api.quran.gading.dev/surah');
       if (!response.ok) {
         throw new Error('Network response was not ok.');
       }
       const dataSurah = await response.json();
-      setDataSurah(dataSurah?.data);
+      setDataSurah(dataSurah.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -59,17 +59,17 @@ export default function Page() {
     };
   }, []);
 
-  const handleSelectSurah = (namaLatin, nomor) => {
-    const isAlreadySelected = listSurah.some((item) => item.nomor === nomor);
+  const handleSelectSurah = (namaLatin, number) => {
+    const isAlreadySelected = listSurah.some((item) => item.number === number);
     if (!isAlreadySelected) {
-      setListSurah((prevList) => [...prevList, { namaLatin, nomor }]);
+      setListSurah((prevList) => [...prevList, { namaLatin, number }]);
     }
 
     setIsShow(false);
   };
 
   const handleGenerateQuiz = async () => {
-    const selectedSurah = listSurah.map((surah) => surah.nomor);
+    const selectedSurah = listSurah.map((surah) => surah.number);
 
     if (selectedSurah.length < 4) {
       alert('Jumlah surah kurang dari 4');
@@ -110,6 +110,10 @@ export default function Page() {
     setSurahAmount(0);
   };
 
+  console.log(dataSurah);
+
+  console.log(listSurah);
+
   return (
     <div className="max-w-4xl mx-auto px-4 mt-10">
       <section className="text-center mb-12 border-b border-gray-800 pb-5 max-w-2xl mx-auto">
@@ -134,14 +138,14 @@ export default function Page() {
                   .filter((surah) => {
                     if (search === '') {
                       return true;
-                    } else if (surah.namaLatin.toLowerCase().includes(search.toLowerCase())) {
+                    } else if (surah.name.transliteration.id.toLowerCase().includes(search.toLowerCase())) {
                       return true;
                     }
                     return false;
                   })
-                  .map(({ namaLatin, nomor }) => (
-                    <li key={nomor} onClick={() => handleSelectSurah(namaLatin, nomor)} className="cursor-pointer border-b border-[#252831] py-2 hover:text-purple-500 transition-all duration-200">
-                      {namaLatin}
+                  .map(({ name, number }) => (
+                    <li key={number} onClick={() => handleSelectSurah(name.transliteration.id, number)} className="cursor-pointer border-b border-[#252831] py-2 hover:text-purple-500 transition-all duration-200">
+                      {name.transliteration.id}
                     </li>
                   ))
               : 'Tidak ditemukan'}
@@ -150,14 +154,14 @@ export default function Page() {
         <div>
           <p>Surah yang dipilih:</p>
           <ul className="flex gap-4 mt-3 max-w-4xl flex-wrap">
-            {listSurah.map(({ namaLatin, nomor }, index) => (
+            {listSurah.map(({ namaLatin, number }, index) => (
               <li key={index}>
                 <Badge className="flex items-center gap-1 cursor-pointer bg-purple-500 hover:bg-purple-500/80">
                   {namaLatin}
                   <X
                     className="w-4"
                     onClick={() => {
-                      const updatedList = listSurah.filter((item) => item.nomor !== nomor);
+                      const updatedList = listSurah.filter((item) => item.number !== number);
                       setListSurah(updatedList);
                     }}
                   />

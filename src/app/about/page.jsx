@@ -11,7 +11,7 @@ export default function Page() {
         </li>
         <li>
           <p>Al Quran API:</p>
-          <Link href="https://equran.id/" className='text-blue-500 underline'>https://equran.id/</Link>
+          <Link href="https://github.com/gadingnst/quran-api" className='text-blue-500 underline'>https://github.com/gadingnst/quran-api</Link>
         </li>{' '}
       </ul>
     </div>

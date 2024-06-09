@@ -7,7 +7,7 @@ export default function Page({ params }) {
 
   async function fetchSurahData() {
     try {
-      const response = await fetch(`https://equran.id/api/v2/surat/${params.slug}`);
+      const response = await fetch(`https://api.quran.gading.dev/surah/${params.slug}`);
       if (!response.ok) {
         throw new Error('Network response was not ok.');
       }
@@ -23,20 +23,22 @@ export default function Page({ params }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(dataSurah);
+
   return (
     <div className="max-w-4xl mx-auto px-4 mt-16 min-h-screen">
       <div className=" bg-gradient-to-r from-purple-500 to-purple-800 py-10 rounded-md flex items-center flex-col justify-center">
         <div className="flex text-2xl items-center">
-          <h3 className="text-xl">{dataSurah.namaLatin}</h3>
+          <h3 className="text-xl">{dataSurah.name.long}</h3>
           <Dot />
-          <h3 className="font-lateef">{dataSurah.nama}</h3>
+          <h3 className="font-lateef">{dataSurah.transliteration.id}</h3>
         </div>
         <div className="flex items-center">
-          <p>{dataSurah.tempatTurun}</p>
+          <p>{dataSurah.revelation.id}</p>
           <Dot />
-          <p>{dataSurah.arti}</p>
+          <p>{dataSurah.translation.id}</p>
           <Dot />
-          <p>{dataSurah.jumlahAyat} Ayat</p>
+          <p>{dataSurah.numberOfVerses} Ayat</p>
         </div>
       </div>
       <div>
@@ -45,14 +47,14 @@ export default function Page({ params }) {
       <div>
         <ul className="flex flex-col gap-2 mt-2">
           {dataSurah &&
-            dataSurah.ayat.map((ayat, index) => (
+            dataSurah.verses.map((ayat, index) => (
               <li key={index} className="bg-slate-800 px-4 pb-6 pt-7 rounded-sm">
                 <div>
-                  <p className="font-lateef text-2xl text-end leading-loose">{ayat.teksArab}</p>
+                  <p className="font-lateef text-2xl text-end leading-loose">{ayat.text.arab}</p>
                 </div>
                 <div className="mt-5">
-                  <p>{ayat.teksLatin}</p>
-                  <p className="text-sm text-zinc-400 mt-2">{ayat.teksIndonesia}</p>
+                  <p>{ayat.text.transliteration.en}</p>
+                  <p className="text-sm text-zinc-400 mt-2">{ayat.translation.id}</p>
                 </div>
               </li>
             ))}

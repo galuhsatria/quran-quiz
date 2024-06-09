@@ -17,17 +17,17 @@ export default function Navbar() {
         </div>
         <ul className="sm:flex gap-6 text-sm font-medium text-slate-400 w-full justify-center hidden">
           <li>
-            <Link href={'/'} className={`${pathname === '/' || pathname === '/quiz' ? 'text-white' : ''} hover:text-white transition-all duration-200`}>
+            <Link href={'/'} className={`${pathname === '/' || pathname === '/quiz' ? 'text-white' : ''}  transition-all duration-200`}>
               Quiz
             </Link>
           </li>
           <li>
-            <Link href={'/baca-alquran'} className={`${pathname.includes('/baca-alquran') ? 'text-white' : ''} hover:text-white transition-all duration-200`}>
+            <Link href={'/baca-alquran'} className={`${pathname.includes('/baca-alquran') ? 'text-white' : ''}  transition-all duration-200`}>
               Baca Al-Quran
             </Link>
           </li>
           <li>
-            <Link href={'/about'} className={`${pathname === '/about' ? 'text-white' : ''} hover:text-white transition-all duration-200`}>
+            <Link href={'/about'} className={`${pathname === '/about' ? 'text-white' : ''}  transition-all duration-200`}>
               About
             </Link>
           </li>
